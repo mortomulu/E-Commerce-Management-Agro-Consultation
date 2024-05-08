@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import ProductCard from "@/components/productCard/ProductCard";
 import Navbar from "@/components/navbar/Navbar";
+import Slider from "@/components/slider/Slider";
 
 export default async function Page() {
   const supabase = createClient();
@@ -10,7 +11,10 @@ export default async function Page() {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-4 gap-4 mx-8">
+      <div className="px-8 mb-8 pt-24">
+        <Slider />
+      </div>
+      <div className="grid grid-cols-4 gap-4 mx-8 pb-8">
         {todos?.map((todo, i) => (
           <ProductCard todo={todo} />
         ))}

@@ -1,10 +1,12 @@
+"use client"
+
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaBalanceScale } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-white mb-8">
+    <div className="navbar bg-white mb-8 fixed top-0 z-10">
       <div className="navbar-start w-1/5">
         <a className="btn btn-ghost text-xl">
           <span className="text-green-500">Agro</span>merce
@@ -16,7 +18,7 @@ const Navbar = () => {
             <a>Home</a>
           </li>
           <li>
-            <a>Consulation</a>
+            <a>Consultation</a>
           </li>
           <li>
             <a>Compare</a>
