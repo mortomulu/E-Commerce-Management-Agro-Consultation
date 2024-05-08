@@ -1,6 +1,9 @@
+"use client";
+
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { Product } from "@/types/product";
+import { useState } from "react";
 
 interface CardDataProps {
   todo: Product;
@@ -8,6 +11,8 @@ interface CardDataProps {
 
 const ProductCard: React.FC<CardDataProps> = ({ todo }) => {
   const badge = todo.product_category == "pra" ? "bg-green-500" : "bg-blue-500";
+
+  const [fav, setFav] = useState(false);
 
   return (
     <div className="card bg-base-100 shadow-xl p-0">
@@ -20,7 +25,9 @@ const ProductCard: React.FC<CardDataProps> = ({ todo }) => {
       <div className="card-body">
         <div className="card-title flex justify-between truncate">
           <h2 className="text-xl">{todo.product_name}</h2>
-          <FaRegHeart />
+          <div onClick={() => setFav(!fav)}>
+            {fav ? <FaHeart /> : <FaRegHeart />}
+          </div>
         </div>
         <p className="text-sm">$ {todo.price}</p>
         <div className="card-actions justify-end">
