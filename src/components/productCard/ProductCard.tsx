@@ -15,9 +15,9 @@ const ProductCard: React.FC<CardDataProps> = ({ todo }) => {
   const [fav, setFav] = useState(false);
 
   return (
-    <div className="card bg-base-100 shadow-xl p-0">
+    <div className="card bg-white shadow-xl p-0">
       <img
-        className="rounded-t-[18px] max-h-40 object-cover max-w-full"
+        className="rounded-t-[18px] h-40 object-cover max-w-full"
         src={todo.url_image}
         alt="Shoes"
       />
