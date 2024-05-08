@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaBalanceScale } from "react-icons/fa";
+import { Button, Tooltip } from "flowbite-react";
 
 const Navbar = () => {
   return (
@@ -27,7 +28,6 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex gap-8">
         <FaBalanceScale className="w-8 h-8" />
-
         <FaShoppingCart className="w-7 h-7" />
         <FaHeart className="w-7 h-7" />
         <a className="btn text-white">Login</a>
