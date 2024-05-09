@@ -1,6 +1,8 @@
 import { Product } from "@/types/product";
 import Image from "next/image";
 import Action from "./Action";
+import { createClient } from "@/utils/supabase/server";
+import { PostgrestResponse } from "@supabase/supabase-js";
 
 const productData: Product[] = [
   {
@@ -53,7 +55,12 @@ const productData: Product[] = [
   },
 ];
 
-const TableAllProduct = () => {
+const TableAllProduct = async () => {
+
+    const supabase = createClient();
+
+    const { data: todos } : PostgrestResponse<Product> | null = await supabase.from("products").select();
+
     return (
       <div className=" w-screen ml-56 p-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="px-4 py-6 md:px-6 xl:px-7.5">
@@ -62,7 +69,7 @@ const TableAllProduct = () => {
           </h4>
         </div>
   
-        <div className="grid grid-cols-6  border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+        <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
           <div className="col-span-2 flex items-center">
             <p className="font-medium">Product Name</p>
           </div>
@@ -72,15 +79,15 @@ const TableAllProduct = () => {
           <div className="col-span-1 flex items-center justify-center">
             <p className="font-medium">Price</p>
           </div>
-          <div className="col-span-2 flex items-center">
+          <div className="col-span-2 flex items-center ml-8">
             <p className="font-medium">Description</p>
           </div>
-          <div className="col-span-1 flex items-center justify-center">
+          <div className="col-span-1 flex items-center justify-center ml-[120px] ">
             <p className="font-medium">Action</p>
           </div>
         </div>
   
-        {productData.map((product, key) => (
+        {todos.map((product : Product, key : number) => (
           <div
             className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
             key={key}
@@ -110,8 +117,8 @@ const TableAllProduct = () => {
                 ${product.price}
               </p>
             </div>
-            <div className="col-span-2  flex items-center">
-              <p className="text-sm text-black dark:text-white">{product.desc}</p>
+            <div className="col-span-2  flex items-center ml-8">
+              <p className="text-sm text-black dark:text-white truncate">{product.desc}</p>
             </div>
             <Action />
           </div>

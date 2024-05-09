@@ -1,6 +1,6 @@
 const Action = () => {
   return (
-    <div className="flex items-center ml-4 space-x-3.5">
+    <div className="flex items-center ml-20 space-x-3.5">
       <button className="hover:text-primary">
         <svg
           className="fill-current"
