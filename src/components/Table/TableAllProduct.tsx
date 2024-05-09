@@ -1,3 +1,4 @@
+
 import { Product } from "@/types/product";
 import Action from "./Action";
 import { createClient } from "@/utils/supabase/server";

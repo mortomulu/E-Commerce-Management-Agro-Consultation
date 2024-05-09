@@ -3,6 +3,7 @@ import SideNavbar from "@/components/Sidebar/SideNavbar"
 
 
 const AllProductPage = () => {
+
     return (
         <div className="h-auto flex">
         <SideNavbar/>
