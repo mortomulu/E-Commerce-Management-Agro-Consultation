@@ -1,59 +1,7 @@
 import { Product } from "@/types/product";
-import Image from "next/image";
 import Action from "./Action";
 import { createClient } from "@/utils/supabase/server";
 import { PostgrestResponse } from "@supabase/supabase-js";
-
-const productData: Product[] = [
-  {
-    product_name: "pupuk",
-    price: 20000,
-    product_category: "pra",
-    url_image:
-      "https://1.bp.blogspot.com/-H1vsG54kwcA/XYRtvqX_QPI/AAAAAAAAAQY/Zt8-FupCmgUltg68r1U0viPaikoIfXw2gCNcBGAsYHQ/w1200-h630-p-k-no-nu/benih-padi-2.jpg",
-    desc: "lorem ipsum dolor amet",
-  },
-  {
-    product_name: "pupuk",
-    price: 20000,
-    product_category: "pra",
-    url_image:
-      "https://1.bp.blogspot.com/-H1vsG54kwcA/XYRtvqX_QPI/AAAAAAAAAQY/Zt8-FupCmgUltg68r1U0viPaikoIfXw2gCNcBGAsYHQ/w1200-h630-p-k-no-nu/benih-padi-2.jpg",
-    desc: "lorem ipsum dolor amet",
-  },
-  {
-    product_name: "pupuk",
-    price: 20000,
-    product_category: "pra",
-    url_image:
-      "https://1.bp.blogspot.com/-H1vsG54kwcA/XYRtvqX_QPI/AAAAAAAAAQY/Zt8-FupCmgUltg68r1U0viPaikoIfXw2gCNcBGAsYHQ/w1200-h630-p-k-no-nu/benih-padi-2.jpg",
-    desc: "lorem ipsum dolor amet",
-  },
-  {
-    product_name: "pupuk",
-    price: 20000,
-    product_category: "pra",
-    url_image:
-      "https://1.bp.blogspot.com/-H1vsG54kwcA/XYRtvqX_QPI/AAAAAAAAAQY/Zt8-FupCmgUltg68r1U0viPaikoIfXw2gCNcBGAsYHQ/w1200-h630-p-k-no-nu/benih-padi-2.jpg",
-    desc: "lorem ipsum dolor amet",
-  },
-  {
-    product_name: "pupuk",
-    price: 20000,
-    product_category: "pra",
-    url_image:
-      "https://1.bp.blogspot.com/-H1vsG54kwcA/XYRtvqX_QPI/AAAAAAAAAQY/Zt8-FupCmgUltg68r1U0viPaikoIfXw2gCNcBGAsYHQ/w1200-h630-p-k-no-nu/benih-padi-2.jpg",
-    desc: "lorem ipsum dolor amet",
-  },
-  {
-    product_name: "pupuk",
-    price: 20000,
-    product_category: "pra",
-    url_image:
-      "https://1.bp.blogspot.com/-H1vsG54kwcA/XYRtvqX_QPI/AAAAAAAAAQY/Zt8-FupCmgUltg68r1U0viPaikoIfXw2gCNcBGAsYHQ/w1200-h630-p-k-no-nu/benih-padi-2.jpg",
-    desc: "lorem ipsum dolor amet",
-  },
-];
 
 const TableAllProduct = async () => {
 
