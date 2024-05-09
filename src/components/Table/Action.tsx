@@ -3,9 +3,16 @@
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import axios from "axios";
 
-const Action = () => {
+const Action = ({ id }: { id: number }) => {
   const [openModalDelete, setOpenModalDelete] = useState(Boolean);
+  
+
+
+  const handleDeleteModal = async () => {
+    console.log('anjing')
+  };
 
   return (
     <>
@@ -23,7 +30,7 @@ const Action = () => {
               Are you sure you want to delete this product?
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={() => setOpenModalDelete(false)}>
+              <Button color="failure" onClick={() => handleDeleteModal()}>
                 {"Yes, I'm sure"}
               </Button>
               <Button color="gray" onClick={() => setOpenModalDelete(false)}>
@@ -53,7 +60,10 @@ const Action = () => {
             />
           </svg>
         </button>
-        <button onClick={() => setOpenModalDelete(true)} className="hover:text-red-500">
+        <button
+          onClick={() => console.log(id)}
+          className="hover:text-red-500"
+        >
           <svg
             className="fill-current"
             width="18"

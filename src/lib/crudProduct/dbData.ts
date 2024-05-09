@@ -1,16 +1,13 @@
-import { createClient } from "@/utils/supabase/server";
-import { error } from "console";
-
-const supabase = createClient();
-
-export const removeData = async (id: number) => {
+export const getProducts = async () => {
   try {
-    const { error } = await supabase.from("products").delete().eq("id", { id });
-
-    if (error) {
-      throw error;
+    const response = await fetch("http://localhost:3000/api/products");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
     }
-  } catch {
-    console.error(error);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
   }
 };
