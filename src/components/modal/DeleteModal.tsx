@@ -10,7 +10,12 @@ export function DeleteModal() {
   return (
     <>
       <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
-      <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
+      <Modal
+        show={openModal}
+        size="md"
+        onClose={() => setOpenModal(false)}
+        popup
+      >
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">

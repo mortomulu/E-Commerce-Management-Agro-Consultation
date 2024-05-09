@@ -1,13 +1,13 @@
-import SideNavbar from "@/components/Sidebar/SideNavbar"
-import FormAddProduct from "@/components/FormAddProduct/FormAddProduct"
+import SideNavbar from "@/components/Sidebar/SideNavbar";
+import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 
-const AddDataPage = () =>  {
- return (
+const AddDataPage = () => {
+  return (
     <div className="flex h-auto">
-        <SideNavbar/>
-        <FormAddProduct/>
+      <SideNavbar />
+      <FormAddProduct />
     </div>
- )
-}
+  );
+};
 
-export default AddDataPage
+export default AddDataPage;

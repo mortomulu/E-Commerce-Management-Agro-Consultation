@@ -26,7 +26,11 @@ const SelectGroup: React.FC = () => {
             isOptionSelected ? "text-gray-300 dark:text-white" : ""
           }`}
         >
-          <option value="" disabled className="text-body text-gray-200 dark:text-bodydark">
+          <option
+            value=""
+            disabled
+            className="text-body text-gray-200 dark:text-bodydark"
+          >
             Select Category
           </option>
           <option value="USA" className="text-body dark:text-bodydark">

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";

@@ -3,15 +3,14 @@
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import axios from "axios";
+import { deleteProduct } from "@/lib/crudProduct/dbData";
 
 const Action = ({ id }: { id: number }) => {
   const [openModalDelete, setOpenModalDelete] = useState(Boolean);
-  
 
-
-  const handleDeleteModal = async () => {
-    console.log('anjing')
+  const handleDeleteModal = () => {
+     deleteProduct(id)
+     setOpenModalDelete(false)
   };
 
   return (
@@ -60,10 +59,7 @@ const Action = ({ id }: { id: number }) => {
             />
           </svg>
         </button>
-        <button
-          onClick={() => console.log(id)}
-          className="hover:text-red-500"
-        >
+        <button onClick={() => setOpenModalDelete(true)} className="hover:text-red-500">
           <svg
             className="fill-current"
             width="18"

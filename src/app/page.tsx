@@ -5,9 +5,9 @@ import CategoryBar from "@/components/categoryBar/CategoryBar";
 import { getProducts } from "@/lib/crudProduct/dbData";
 import { Product } from "@/types/product";
 
-export default async function Page() {
 
-  const   todos  = await getProducts()
+export default async function Page() {
+  const todos = await getProducts();
 
   return (
     <>
@@ -18,7 +18,7 @@ export default async function Page() {
       <div className="flex mx-8 pb-8">
         <CategoryBar />
         <div className="grid grid-cols-4 gap-4 mx-8 pb-8">
-          {todos?.map((todo : Product, i : number) => (
+          {todos?.map((todo: Product, i: number) => (
             <ProductCard key={i} todo={todo} />
           ))}
         </div>
