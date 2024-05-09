@@ -1,13 +1,13 @@
-import { createClient } from "@/utils/supabase/server";
 import ProductCard from "@/components/productCard/ProductCard";
 import Navbar from "@/components/navbar/Navbar";
 import Slider from "@/components/slider/Slider";
 import CategoryBar from "@/components/categoryBar/CategoryBar";
+import { getProducts } from "@/lib/crudProduct/dbData";
+import { Product } from "@/types/product";
 
 export default async function Page() {
-  const supabase = createClient();
 
-  const { data: todos } = await supabase.from("products").select();
+  const   todos  = await getProducts()
 
   return (
     <>
@@ -18,8 +18,8 @@ export default async function Page() {
       <div className="flex mx-8 pb-8">
         <CategoryBar />
         <div className="grid grid-cols-4 gap-4 mx-8 pb-8">
-          {todos?.map((todo, i) => (
-            <ProductCard todo={todo} />
+          {todos?.map((todo : Product, i : number) => (
+            <ProductCard key={i} todo={todo} />
           ))}
         </div>
       </div>

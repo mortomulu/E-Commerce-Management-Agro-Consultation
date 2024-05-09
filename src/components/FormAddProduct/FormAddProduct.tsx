@@ -4,7 +4,7 @@ import { Button } from "flowbite-react";
 const FormAddProduct = () => {
   return (
     <div className=" w-screen ml-56 p-10 rounded-sm border border-stroke bg-inherit shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="px-4 py-6 md:px-6 xl:px-7.5">
+      <div className="px-4 py-5 md:px-6 xl:px-7.5">
         <h4 className="text-xl font-semibold text-black dark:text-white">
           Add Product
         </h4>

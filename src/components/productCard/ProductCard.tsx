@@ -24,7 +24,7 @@ const ProductCard: React.FC<CardDataProps> = ({ todo }) => {
 
       <div className="card-body">
         <div className="card-title flex justify-between truncate">
-          <h2 className="text-xl">{todo.product_name}</h2>
+          <h2 className="text-xl w-40 truncate">{todo.product_name}</h2>
           <div onClick={() => setFav(!fav)}>
             {fav ? <FaHeart /> : <FaRegHeart />}
           </div>
