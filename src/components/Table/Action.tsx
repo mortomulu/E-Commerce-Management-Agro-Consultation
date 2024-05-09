@@ -8,8 +8,8 @@ import { deleteProduct } from "@/lib/crudProduct/dbData";
 const Action = ({ id }: { id: number }) => {
   const [openModalDelete, setOpenModalDelete] = useState(Boolean);
 
-  const handleDeleteModal = () => {
-     deleteProduct(id)
+  const handleDeleteModal = async () => {
+     await deleteProduct(id)
      setOpenModalDelete(false)
   };
 

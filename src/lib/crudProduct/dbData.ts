@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 export const getProducts = async () => {
   try {
     const response = await fetch("http://localhost:3000/api/products");
@@ -12,9 +14,9 @@ export const getProducts = async () => {
   }
 };
 
-export const deleteProduct = async (id : number) => {
+export const deleteProduct = async (id: number) => {
   try {
-    const response = await fetch("http://localhost:3000/api/products", {
+    const response = await fetch(`http://localhost:3000/api/products/${id}`, {
       method: 'DELETE',
     });
 
@@ -23,7 +25,12 @@ export const deleteProduct = async (id : number) => {
     }
 
     console.log('Product deleted successfully');
+    return NextResponse.json({
+      status: 204,
+      statusText: 'No Content'
+    });
   } catch (error) {
     console.error('Error deleting product:', error);
+    return NextResponse.json(new Error('Failed to delete product'));
   }
 };
