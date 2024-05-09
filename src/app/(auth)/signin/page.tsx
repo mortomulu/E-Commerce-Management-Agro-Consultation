@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const SignInPage = () => {
@@ -376,9 +377,9 @@ const SignInPage = () => {
             <div className="mt-4 text-sm text-gray-600 text-center">
               <p>
                 Don't have an account?{" "}
-                <a href="#" className="text-black hover:underline">
+                <Link href={"/signup"} className="text-black hover:underline">
                   Register here
-                </a>
+                </Link>
               </p>
             </div>
           </div>

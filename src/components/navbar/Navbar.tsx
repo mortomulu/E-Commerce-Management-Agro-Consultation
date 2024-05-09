@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaBalanceScale } from "react-icons/fa";
 import { Button, Tooltip } from "flowbite-react";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -30,7 +31,7 @@ const Navbar = () => {
         <FaBalanceScale className="w-8 h-8" />
         <FaShoppingCart className="w-7 h-7" />
         <FaHeart className="w-7 h-7" />
-        <a className="btn text-white">Login</a>
+        <Link href={"/signin"} className="btn text-white"> Sign In</Link>
       </div>
     </div>
   );
