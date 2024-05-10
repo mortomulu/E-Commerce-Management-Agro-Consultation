@@ -11,7 +11,7 @@ const Navbar = () => {
     <div className="navbar bg-white mb-8 fixed top-0 z-10">
       <div className="navbar-start w-1/5">
         <a className="btn btn-ghost text-xl">
-          <span className="text-green-500">Agro</span>merce
+          <span className="text-green-500 -mr-1">Agro</span>Merce
         </a>
       </div>
       <div className="navbar-start hidden lg:flex">

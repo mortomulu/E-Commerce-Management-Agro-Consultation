@@ -1,3 +1,5 @@
+
+
 import { Product } from "@/types/product";
 import Action from "./Action";
 import { getProducts } from "@/lib/crudProduct/dbData";
@@ -5,6 +7,7 @@ import { getProducts } from "@/lib/crudProduct/dbData";
 const TableAllProduct = async () => {
   try {
     const todos = await getProducts();
+    
 
     return (
       <div className="w-screen ml-56 p-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
