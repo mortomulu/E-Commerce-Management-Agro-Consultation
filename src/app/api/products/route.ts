@@ -10,45 +10,41 @@ export async function GET() {
   } catch {}
 }
 
-
 export async function POST(req: NextRequest) {
   const supabase = createClient();
   const requestBody = await req.json();
-  const headers = {'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin':'*',
-                    'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'}
+  const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
   try {
-
     // Pastikan objek JSON telah terbentuk dengan benar
     if (!requestBody) {
-      throw new Error('Request body is empty or not in JSON format');
+      throw new Error("Request body is empty or not in JSON format");
     }
 
-    const { data, error } = await supabase
-      .from("products")
-      .insert(
-        {
-          product_name:requestBody.product_name ,
-          price:requestBody.price ,
-          product_category:requestBody.product_category,
-          url_image:requestBody.url_image,
-          desc:requestBody.desc,
-        }
-      );
+    const { data, error } = await supabase.from("products").insert({
+      product_name: requestBody.product_name,
+      price: requestBody.price,
+      product_category: requestBody.product_category,
+      url_image: requestBody.url_image,
+      desc: requestBody.desc,
+    });
 
     if (error) {
-       ;
     }
 
-    console.log('Product added successfully');
+    console.log("Product added successfully");
     return NextResponse.json({
       status: 201,
-      statusText: 'Created',
-      headers : headers,
+      statusText: "Created",
+      headers: headers,
       data,
     });
   } catch (error) {
-    console.error('Error adding product:');
-    throw new Error('Failed to add product');
+    console.error("Error adding product:");
+    throw new Error("Failed to add product");
   }
 }
