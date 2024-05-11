@@ -21,7 +21,7 @@ const ProductCard: React.FC<CardDataProps> = ({ todo }) => {
         className="rounded-t-[18px] h-40 object-cover max-w-full"
         src={todo.url_image}
         alt="Shoes"
-        width={100}
+        width={400}
         height={100}
       />
 
