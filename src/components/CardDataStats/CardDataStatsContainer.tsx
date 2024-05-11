@@ -2,7 +2,7 @@ import CardDataStats from "./CardDataStats";
 
 const CardDataStatsContainer = () => {
   return (
-    <div className="ml-56 p-10 w-full grid grid-cols-2 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+    <div className="ml-56 p-10 w-full grid grid-cols-2 gap-4 md:grid-cols-2 md:gap-6 2xl:gap-7.5">
       <CardDataStats title="Total views" total="$3.456K" rate="0.43%" levelUp>
         <svg
           className="fill-green-500 dark:fill-white"
