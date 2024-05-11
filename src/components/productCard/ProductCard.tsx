@@ -18,7 +18,7 @@ const ProductCard: React.FC<CardDataProps> = ({ todo }) => {
   return (
     <div className="card bg-white shadow-xl p-0">
       <Image
-        className="rounded-t-[18px] h-40 object-cover max-w-full"
+        className="rounded-t-[15px] h-40 object-cover max-w-full"
         src={todo.url_image}
         alt="Shoes"
         width={400}

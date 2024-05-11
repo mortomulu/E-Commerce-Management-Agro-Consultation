@@ -3,8 +3,11 @@ import { addProduct } from "@/types/addProduct";
 import { uuid } from "uuidv4";
 
 export async function getProducts () {
+
+  const url = process.env.NEXT_PUBLIC_BASE_URL
+
   try {
-    const response = await fetch("http://localhost:3000/api/products", { next: { revalidate: 10 } });
+    const response = await fetch(`${url}/api/products`, { next: { revalidate: 10 } });
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }
@@ -33,41 +36,10 @@ export async function getProducts () {
 
 export const postProduct = async (productData : addProduct) => {
 
-  const coba = JSON.stringify(productData)
-  // const supabase = createClient();
+  const url = process.env.NEXT_PUBLIC_BASE_URL
 
-  
   try {
-    console.log(coba)
-    // console.log(req)
-    // Ambil data dari FormData
-    // const { product_name, price, product_category, url_image, desc } = productData;
-
-    // // Gunakan data yang diterima untuk memasukkan produk baru ke dalam database
-    // const { data, error } = await supabase
-    //   .from("products")
-    //   .insert(
-    //     {
-    //       product_name,
-    //       price,
-    //       product_category,
-    //       url_image,
-    //       desc
-    //     }
-    //   );
-    //   console.log(data)
-    // if (error) {
-    //   throw error;
-    // }
-
-    // console.log('Product added successfully');
-    // return NextResponse.json({
-    //   status: 201,
-    //   statusText: 'Created',
-    //   data,
-    // });
-
-    const response = await fetch('http://localhost:3000/api/products', {
+    const response = await fetch(`${url}/api/products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -94,8 +66,9 @@ export const postProduct = async (productData : addProduct) => {
 
 
 export const deleteProduct = async (id: number) => {
+  const url = process.env.NEXT_PUBLIC_BASE_URL
   try {
-    const response = await fetch(`http://localhost:3000/api/products/${id}`, {
+    const response = await fetch(`${url}/api/products/${id}`, {
       method: 'DELETE',
     });
 
