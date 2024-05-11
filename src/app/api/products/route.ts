@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 import { addProduct } from "@/types/addProduct";
+import { corsHeaders } from "@/utils/supabase/_shared/cors";
 
 export async function GET() {
   const supabase = createClient();
@@ -40,7 +41,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       status: 201,
       statusText: "Created",
-      headers: headers,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       data,
     });
   } catch (error) {
