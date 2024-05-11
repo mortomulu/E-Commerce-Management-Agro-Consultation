@@ -12,10 +12,11 @@ export async function GET() {
 
 
 export async function POST(req: NextRequest) {
-  console.log("muncul lo")
   const supabase = createClient();
   const requestBody = await req.json();
-  console.log(requestBody)
+  const headers = {'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin':'*',
+                    'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'}
   try {
 
     // Pastikan objek JSON telah terbentuk dengan benar
@@ -43,6 +44,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       status: 201,
       statusText: 'Created',
+      headers : headers,
       data,
     });
   } catch (error) {
