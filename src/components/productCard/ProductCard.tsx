@@ -4,6 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { Product } from "@/types/product";
 import { useState } from "react";
+import Image from "next/image";
 
 interface CardDataProps {
   todo: Product;
@@ -16,10 +17,12 @@ const ProductCard: React.FC<CardDataProps> = ({ todo }) => {
 
   return (
     <div className="card bg-white shadow-xl p-0">
-      <img
+      <Image
         className="rounded-t-[18px] h-40 object-cover max-w-full"
         src={todo.url_image}
         alt="Shoes"
+        width={100}
+        height={100}
       />
 
       <div className="card-body">

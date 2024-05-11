@@ -3,6 +3,7 @@
 import { Product } from "@/types/product";
 import Action from "./Action";
 import { getProducts } from "@/lib/crudProduct/dbData";
+import Image from "next/image";
 
 const TableAllProduct = async () => {
   try {
@@ -43,7 +44,7 @@ const TableAllProduct = async () => {
             <div className="col-span-2 flex items-center">
               <div className="flex items-center gap-4 sm:flex-row sm:items-center">
                 <div className="h-12.5! w-15 flex rounded-md">
-                  <img
+                  <Image
                     src={product.url_image}
                     width={60}
                     height={50}

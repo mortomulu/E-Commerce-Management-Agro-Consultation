@@ -4,8 +4,7 @@ import { uuid } from "uuidv4";
 
 export async function getProducts () {
   try {
-    console.log("woi")
-    const response = await fetch("http://localhost:3000/api/products");
+    const response = await fetch("http://localhost:3000/api/products", { cache: "no-store" });
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }
