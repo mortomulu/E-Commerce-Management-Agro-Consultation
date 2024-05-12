@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "flowbite-react";
 import { postProduct } from "@/lib/crudProduct/dbData";
-import { addProduct } from "@/types/addProduct";
+import { useRef } from "react";
 
 const FormAddProduct = () => {
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
@@ -12,7 +12,9 @@ const FormAddProduct = () => {
   const [category, setCategory] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [img, setImg] = useState<File | null>(null);
+  const refImg : any = useRef()
 
+  console.log(refImg)
 
 
   const changeTextColor = () => {
@@ -50,6 +52,7 @@ const FormAddProduct = () => {
       setCategory('');
       setDesc('');
       setImg(null);
+      refImg.current.value = null
     } catch (error) {
       console.error('Error adding product:', error);
     }
@@ -131,6 +134,7 @@ const FormAddProduct = () => {
           <div>
             <input
               type="file"
+              ref={refImg}
               onChange={(e : any) => setImg(e.target.files[0])}
               className="w-full pl-8 rounded-md border border-gray-400 border-stroke p-3 outline-none transition file:mr-4 file:rounded file:border-stroke file:bg-[#EEEEEE] file:px-2.5 file:py-1 file:text-sm focus:border-primary file:focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-strokedark dark:file:bg-white/30 dark:file:text-white"
             />
