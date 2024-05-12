@@ -1,6 +1,7 @@
 "use client";
 
 import { Sidebar } from "flowbite-react";
+import { usePathname } from "next/navigation";
 import { BiBuoy, BiLogOutCircle, BiSolidCartAdd } from "react-icons/bi";
 import {
   HiArrowSmRight,
@@ -13,6 +14,8 @@ import {
 } from "react-icons/hi";
 
 export default function SideNavbar() {
+  const pathname = usePathname();
+
   return (
     <Sidebar
       aria-label="Sidebar with content separator example"
@@ -24,20 +27,46 @@ export default function SideNavbar() {
       </h1>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiChartPie}>
-            Dashboard
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiUser}>
-            Users
-          </Sidebar.Item>
-          <Sidebar.Collapse href="#" icon={HiShoppingBag} label="Products">
-            <Sidebar.Item href="#">All Product</Sidebar.Item>
-            <Sidebar.Item href="#">Pra-Planting</Sidebar.Item>
-            <Sidebar.Item href="#">Post-Planting</Sidebar.Item>
-          </Sidebar.Collapse>
-          <Sidebar.Item href="#" icon={BiSolidCartAdd}>
-            Add product
-          </Sidebar.Item>
+          <div
+            className={pathname == "/admin" ? "bg-green-200 rounded-lg" : ""}
+          >
+            <Sidebar.Item href="/admin" icon={HiChartPie}>
+              <p className="">Dashboard</p>
+            </Sidebar.Item>
+          </div>
+          <div
+            className={
+              pathname == "/admin/users" ? "bg-green-200 rounded-lg" : ""
+            }
+          >
+            <Sidebar.Item href="/admin/users" icon={HiUser}>
+              Users
+            </Sidebar.Item>
+          </div>
+          <div
+            className={
+              pathname === "/admin/all-product" ||
+              pathname === "/admin/pra-planting" ||
+              pathname === "/admin/post-planting"
+                ? "bg-green-200 rounded-lg"
+                : ""
+            }
+          >
+            <Sidebar.Collapse href="#" icon={HiShoppingBag} label="Products">
+              <Sidebar.Item href="/admin/all-product">All Product</Sidebar.Item>
+              <Sidebar.Item href="/admin/pra-planting">Pra-Planting</Sidebar.Item>
+              <Sidebar.Item href="/admin/post-planting">Post-Planting</Sidebar.Item>
+            </Sidebar.Collapse>
+          </div>
+          <div
+            className={
+              pathname == "/admin/add-product" ? "bg-green-200 rounded-lg" : ""
+            }
+          >
+            <Sidebar.Item href="/admin/add-product" icon={BiSolidCartAdd}>
+              Add product
+            </Sidebar.Item>
+          </div>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
           <Sidebar.Item href="#" icon={BiLogOutCircle}>

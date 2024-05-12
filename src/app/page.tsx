@@ -1,7 +1,4 @@
-"use client"
-
 import ProductCard from "@/components/productCard/ProductCard";
-import Navbar from "@/components/navbar/Navbar";
 import Slider from "@/components/slider/Slider";
 import CategoryBar from "@/components/categoryBar/CategoryBar";
 import { getProducts } from "@/lib/crudProduct/dbData";
