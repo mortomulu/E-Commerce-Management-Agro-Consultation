@@ -34,7 +34,17 @@ export async function POST(req: NextRequest) {
       desc: requestBody.desc,
     });
 
+    if (req.method === `OPTIONS`) {
+      return new Response(null, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT, DELETE',
+        },
+      });
+    }
+
     if (error) {
+      throw new Error
     }
 
     console.log("Product added successfully");
