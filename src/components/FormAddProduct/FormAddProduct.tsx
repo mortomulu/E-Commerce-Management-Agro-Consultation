@@ -11,7 +11,9 @@ const FormAddProduct = () => {
   const [price, setPrice] = useState<number | ''>('');
   const [category, setCategory] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
-  const [img, setImg] = useState<string | null>(null);
+  const [img, setImg] = useState<File | null>(null);
+
+
 
   const changeTextColor = () => {
     setIsOptionSelected(true);
@@ -32,13 +34,16 @@ const FormAddProduct = () => {
       product_name : name, 
       price : price,
       product_category : category,
-      url_image : img,
       desc : desc,
     }
 
-  
+    const fileImage = img
+
+    console.log(formData)
+
     try {
-      await postProduct(formData);
+      console.log(img)
+      await postProduct(formData, fileImage);
       console.log('Product added successfully');
       setName('');
       setPrice('');
@@ -126,7 +131,7 @@ const FormAddProduct = () => {
           <div>
             <input
               type="file"
-              onChange={(e) => setImg(e.target.value)}
+              onChange={(e) => setImg(e.target.files[0])}
               className="w-full pl-8 rounded-md border border-gray-400 border-stroke p-3 outline-none transition file:mr-4 file:rounded file:border-stroke file:bg-[#EEEEEE] file:px-2.5 file:py-1 file:text-sm focus:border-primary file:focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-strokedark dark:file:bg-white/30 dark:file:text-white"
             />
           </div>

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { addProduct } from "@/types/addProduct";
 import { uuid } from "uuidv4";
 
+
 export async function getProducts () {
 
   const url = process.env.NEXT_PUBLIC_BASE_URL
@@ -34,9 +35,13 @@ export async function getProducts () {
 //     return filepath
 // }
 
-export const postProduct = async (productData : addProduct) => {
+export const postProduct = async (productData : any, fileImage : any) => {
 
   const url = process.env.NEXT_PUBLIC_BASE_URL
+
+  console.log(productData)
+  console.log(fileImage)
+
 
   try {
     const response = await fetch(`${url}/api/products`, {
