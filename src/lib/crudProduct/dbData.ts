@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
-import { addProduct } from "@/types/addProduct";
-import { uuid } from "uuidv4";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-
-export async function getProducts () {
-
-  const url = process.env.NEXT_PUBLIC_BASE_URL
+export async function getProducts() {
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   try {
-    const response = await fetch(`${url}/api/products`, { next: { revalidate: 10 } });
+    const response = await fetch(`${url}/api/products`, {
+      next: { revalidate: 10 },
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }
@@ -18,76 +17,73 @@ export async function getProducts () {
     console.error("Error fetching data:", error);
     return null;
   }
-};
+}
 
-// export const postImage = async ( img : any) => {
-//   const supabase = createClient();
-//     const filename = `agromerce-${uuid()}`;
+export const postProduct = async (productData: any, fileImage: File) => {
+  const supabase = createClientComponentClient();
 
-//     const { data, error } = await supabase.storage
-//       .from("images")
-//       .upload(filename, img, {
-//         cacheControl: "3600",
-//         upsert: false,
-//       });
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
-//     const filepath = data?.path;
-//     return filepath
-// }
+  console.log(productData);
+  console.log(fileImage);
 
-export const postProduct = async (productData : any, fileImage : any) => {
+  const { data: fileData, error: fileError } = await supabase.storage
+    .from("image")
+    .upload(`${fileImage.name}-${Date.now()}`, fileImage);
 
-  const url = process.env.NEXT_PUBLIC_BASE_URL
+  console.log(fileData);
 
-  console.log(productData)
-  console.log(fileImage)
-
+  const filepath = fileData?.path;
 
   try {
     const response = await fetch(`${url}/api/products`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(productData),
+      body: JSON.stringify({
+        product_name: productData.product_name,
+        price: productData.price,
+        product_category: productData.product_category,
+        url_image:  `https://xtsemdavncboeicgvrsz.supabase.co/storage/v1/object/public/image/${filepath}`,
+        desc: productData.desc,
+      }),
     });
 
     if (!response.ok) {
-      throw new Error('Failed to add product');
+      throw new Error("Failed to add product");
     }
 
-    console.log('Product added successfully');
+    console.log("Product added successfully");
     const datawo = await response.json();
     return NextResponse.json({
       status: 204,
-      statusText: 'No Content'
+      statusText: "No Content",
     });
   } catch (error) {
-    console.error('Error adding product:', error);
-    return NextResponse.json(new Error('Failed to delete product'));
+    console.error("Error adding product:", error);
+    return NextResponse.json(new Error("Failed to delete product"));
   }
 };
 
-
-
 export const deleteProduct = async (id: number) => {
-  const url = process.env.NEXT_PUBLIC_BASE_URL
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
   try {
     const response = await fetch(`${url}/api/products/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
 
     if (!response.ok) {
-      throw new Error('Failed to delete product');
+      throw new Error("Failed to delete product");
     }
 
-    console.log('Product deleted successfully');
+    console.log("Product deleted successfully");
     return NextResponse.json({
       status: 204,
-      statusText: 'No Content'
+      statusText: "No Content",
     });
   } catch (error) {
-    console.error('Error deleting product:', error);
-    return NextResponse.json(new Error('Failed to delete product'));
+    console.error("Error deleting product:", error);
+    return NextResponse.json(new Error("Failed to delete product"));
   }
 };

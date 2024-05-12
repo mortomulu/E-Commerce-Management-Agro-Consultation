@@ -1,8 +1,6 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { addProduct } from "@/types/addProduct";
-import { corsHeaders } from "@/utils/supabase/_shared/cors";
 
 export async function GET() {
   const supabase = createClient();
@@ -15,6 +13,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const supabase = createClient();
   const requestBody = await req.json();
+  console.log("test file image")
   console.log(requestBody)
   const headers = {
     "Content-Type": "application/json",
@@ -34,25 +33,11 @@ export async function POST(req: NextRequest) {
       console.log("image tidak ada")
     }
 
-
-    const { data: fileData, error: fileError } = await supabase.storage
-      .from("image")
-      // .upload(`${fileName}`, fileName);
-      .upload(`${fileName}-${Date.now()}`, fileName);
-
-    console.log("dibawah function up storage");
-
-    const filepath = fileData?.path;
-
-    if (!filepath) {
-      throw new Error("Failed to upload image to Supabase Storage");
-    }
-
     const { data, error } = await supabase.from("products").insert({
       product_name: requestBody.product_name,
       price: requestBody.price,
       product_category: requestBody.product_category,
-      url_image: filepath,
+      url_image: requestBody.url_image,
       desc: requestBody.desc,
     });
 
@@ -65,9 +50,9 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    if (error || fileError) {
-      console.error(fileError);
-      throw new Error(`error massage : ${fileError}, ${requestBody}`);
+    if (error) {
+      console.error(error);
+      throw new Error(`error massage : ${error}`);
     }
 
     console.log("Product added successfully");
