@@ -1,3 +1,5 @@
+"use client"
+
 import ProductCard from "@/components/productCard/ProductCard";
 import Navbar from "@/components/navbar/Navbar";
 import Slider from "@/components/slider/Slider";
@@ -5,13 +7,11 @@ import CategoryBar from "@/components/categoryBar/CategoryBar";
 import { getProducts } from "@/lib/crudProduct/dbData";
 import { Product } from "@/types/product";
 
-
 export default async function Page() {
   const todos = await getProducts();
 
   return (
     <>
-      <Navbar />
       <div className="px-8 mb-8 pt-24">
         <Slider />
       </div>

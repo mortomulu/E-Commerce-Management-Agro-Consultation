@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 
@@ -13,8 +12,8 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const supabase = createClient();
   const requestBody = await req.json();
-  console.log("test file image")
-  console.log(requestBody)
+  console.log("test file image");
+  console.log(requestBody);
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -29,8 +28,8 @@ export async function POST(req: NextRequest) {
 
     const fileName = requestBody.url_image;
 
-    if (!fileName){
-      console.log("image tidak ada")
+    if (!fileName) {
+      console.log("image tidak ada");
     }
 
     const { data, error } = await supabase.from("products").insert({

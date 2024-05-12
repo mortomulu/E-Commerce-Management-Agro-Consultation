@@ -45,7 +45,7 @@ export const postProduct = async (productData: any, fileImage: File) => {
         product_name: productData.product_name,
         price: productData.price,
         product_category: productData.product_category,
-        url_image:  `https://xtsemdavncboeicgvrsz.supabase.co/storage/v1/object/public/image/${filepath}`,
+        url_image: `https://xtsemdavncboeicgvrsz.supabase.co/storage/v1/object/public/image/${filepath}`,
         desc: productData.desc,
       }),
     });
