@@ -80,10 +80,10 @@ const Navbar = () => {
               Sign In
             </div>
           ) : (
-            <div className="btn text-white" onClick={() => signOut()}>
+            <Link href={"/admin"} className="btn text-white">
               {" "}
-              Sign Out
-            </div>
+              Dashboard
+            </Link>
           )}
         </div>
       </div>

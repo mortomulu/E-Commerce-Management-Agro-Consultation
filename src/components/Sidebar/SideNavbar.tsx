@@ -14,15 +14,17 @@ import {
   HiViewBoards,
 } from "react-icons/hi";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SideNavbar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleLogout =() => {
-    signOut()
-    router.push('/')
-  }
+  const handleLogout = async (e: any) => {
+    e.preventDefault();
+    await signOut(); // Perlu menunggu proses signOut selesai sebelum mengarahkan pengguna
+    router.push("/"); // Mengarahkan pengguna ke halaman utama setelah logout
+  };
 
   return (
     <Sidebar
@@ -51,7 +53,8 @@ export default function SideNavbar() {
               Users
             </Sidebar.Item>
           </div>
-          <div
+
+          <Sidebar.Collapse
             className={
               pathname === "/admin/all-product" ||
               pathname === "/admin/pra-planting" ||
@@ -59,17 +62,15 @@ export default function SideNavbar() {
                 ? "bg-green-200 rounded-lg"
                 : ""
             }
+            icon={HiShoppingBag}
+            label="Products"
           >
-            <Sidebar.Collapse href="#" icon={HiShoppingBag} label="Products">
-              <Sidebar.Item href="/admin/all-product">All Product</Sidebar.Item>
-              <Sidebar.Item href="/admin/pra-planting">
-                Pra-Planting
-              </Sidebar.Item>
-              <Sidebar.Item href="/admin/post-planting">
-                Post-Planting
-              </Sidebar.Item>
-            </Sidebar.Collapse>
-          </div>
+            <Sidebar.Item href="/admin/all-product">All Product</Sidebar.Item>
+            <Sidebar.Item href="/admin/pra-planting">Pra-Planting</Sidebar.Item>
+            <Sidebar.Item href="/admin/post-planting">
+              Post-Planting
+            </Sidebar.Item>
+          </Sidebar.Collapse>
           <div
             className={
               pathname == "/admin/add-product" ? "bg-green-200 rounded-lg" : ""
@@ -82,14 +83,11 @@ export default function SideNavbar() {
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup className="flex items-center ">
           <div className="ml-1">
-            <Sidebar.Item href="#" icon={BiLogOutCircle}></Sidebar.Item>
+            <Sidebar.Item icon={BiLogOutCircle}></Sidebar.Item>
           </div>
-          <button
-            className="-ml-5 -pt-5!"
-            onClick={handleLogout}
-          >
-            Sign Out
-          </button>
+          <button onClick={handleLogout} className="-ml-5 -pt-5!">
+          Sign Out
+        </button>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>

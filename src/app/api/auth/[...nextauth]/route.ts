@@ -6,6 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const emailAdmin = process.env.NEXT_SECRET_EMAIL;
 const passwordAdmin = process.env.NEXT_SECRET_PASSWORD;
 
+
 const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",

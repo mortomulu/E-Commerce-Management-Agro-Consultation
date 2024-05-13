@@ -10,7 +10,6 @@ export default function DashboardPage() {
 
   const { data: session, status } : {data : any, status: string} = useSession();
 
-  console.log(status);
 
   useEffect(() => {
     if (status === "unauthenticated" && session?.user.role !== 'admin') {
