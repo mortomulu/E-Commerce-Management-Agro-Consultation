@@ -1,3 +1,5 @@
+"use client"
+
 import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 
 const AddProductPage = () => {

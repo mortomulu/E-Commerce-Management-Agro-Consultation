@@ -1,6 +1,7 @@
 "use client";
 
 import { Sidebar } from "flowbite-react";
+import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { BiBuoy, BiLogOutCircle, BiSolidCartAdd } from "react-icons/bi";
 import {
@@ -12,9 +13,16 @@ import {
   HiUser,
   HiViewBoards,
 } from "react-icons/hi";
+import { useRouter } from "next/navigation";
 
 export default function SideNavbar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout =() => {
+    signOut()
+    router.push('/')
+  }
 
   return (
     <Sidebar
@@ -54,8 +62,12 @@ export default function SideNavbar() {
           >
             <Sidebar.Collapse href="#" icon={HiShoppingBag} label="Products">
               <Sidebar.Item href="/admin/all-product">All Product</Sidebar.Item>
-              <Sidebar.Item href="/admin/pra-planting">Pra-Planting</Sidebar.Item>
-              <Sidebar.Item href="/admin/post-planting">Post-Planting</Sidebar.Item>
+              <Sidebar.Item href="/admin/pra-planting">
+                Pra-Planting
+              </Sidebar.Item>
+              <Sidebar.Item href="/admin/post-planting">
+                Post-Planting
+              </Sidebar.Item>
             </Sidebar.Collapse>
           </div>
           <div
@@ -68,10 +80,16 @@ export default function SideNavbar() {
             </Sidebar.Item>
           </div>
         </Sidebar.ItemGroup>
-        <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={BiLogOutCircle}>
+        <Sidebar.ItemGroup className="flex items-center ">
+          <div className="ml-1">
+            <Sidebar.Item href="#" icon={BiLogOutCircle}></Sidebar.Item>
+          </div>
+          <button
+            className="-ml-5 -pt-5!"
+            onClick={handleLogout}
+          >
             Sign Out
-          </Sidebar.Item>
+          </button>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>

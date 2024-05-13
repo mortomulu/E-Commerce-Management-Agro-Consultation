@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { Button } from "flowbite-react";
@@ -7,15 +7,14 @@ import { useRef } from "react";
 
 const FormAddProduct = () => {
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
-  const [name, setName] = useState<string>('');
-  const [price, setPrice] = useState<number | ''>('');
-  const [category, setCategory] = useState<string>('');
-  const [desc, setDesc] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [price, setPrice] = useState<number | "">("");
+  const [category, setCategory] = useState<string>("");
+  const [desc, setDesc] = useState<string>("");
   const [img, setImg] = useState<File | null>(null);
-  const refImg : any = useRef()
+  const refImg: any = useRef();
 
-  console.log(refImg)
-
+  console.log(refImg);
 
   const changeTextColor = () => {
     setIsOptionSelected(true);
@@ -23,41 +22,39 @@ const FormAddProduct = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    console.log(name, price, category, desc, img)
 
-    // Pastikan semua data yang diperlukan sudah diisi
+    console.log(name, price, category, desc, img);
+
     if (!name || !price || !category || !desc || !img) {
-      console.error('Please fill in all fields');
+      console.error("Please fill in all fields");
       return;
     }
-  
+
     const formData = {
-      product_name : name, 
-      price : price,
-      product_category : category,
-      desc : desc,
-    }
+      product_name: name,
+      price: price,
+      product_category: category,
+      desc: desc,
+    };
 
-    const fileImage = img
+    const fileImage = img;
 
-    console.log(formData)
+    console.log(formData);
 
     try {
-      console.log(img)
+      console.log(img);
       await postProduct(formData, fileImage);
-      console.log('Product added successfully');
-      setName('');
-      setPrice('');
-      setCategory('');
-      setDesc('');
+      console.log("Product added successfully");
+      setName("");
+      setPrice("");
+      setCategory("");
+      setDesc("");
       setImg(null);
-      refImg.current.value = null
+      refImg.current.value = null;
     } catch (error) {
-      console.error('Error adding product:', error);
+      console.error("Error adding product:", error);
     }
   };
-  
 
   return (
     <div className=" w-screen ml-56 p-10 rounded-sm border border-stroke bg-inherit shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -67,7 +64,10 @@ const FormAddProduct = () => {
         </h4>
       </div>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5.5 p-6.5 border-gray-500">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-5.5 p-6.5 border-gray-500"
+        >
           <div>
             <label className="mb-3 block text-sm font-medium text-black dark:text-white">
               Product Name
@@ -135,7 +135,7 @@ const FormAddProduct = () => {
             <input
               type="file"
               ref={refImg}
-              onChange={(e : any) => setImg(e.target.files[0])}
+              onChange={(e: any) => setImg(e.target.files[0])}
               className="w-full pl-8 rounded-md border border-gray-400 border-stroke p-3 outline-none transition file:mr-4 file:rounded file:border-stroke file:bg-[#EEEEEE] file:px-2.5 file:py-1 file:text-sm focus:border-primary file:focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-strokedark dark:file:bg-white/30 dark:file:text-white"
             />
           </div>
