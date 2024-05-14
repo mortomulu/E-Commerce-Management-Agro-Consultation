@@ -2,16 +2,25 @@ import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
 import CredentialsProvider from "next-auth/providers/credentials";
+import crypto from "crypto"
 
 const emailAdmin = process.env.NEXT_SECRET_EMAIL;
 const passwordAdmin = process.env.NEXT_SECRET_PASSWORD;
 
+const secretbyte = crypto.randomBytes(64).toString('hex');
+const user: any = {
+  id: 1,
+  name: "fajri hidayat",
+  email: "fajrihidayat@gmail.com",
+  role: "admin",
+};
 
-const authOptions: NextAuthOptions = {
+
+const authOptions :  NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: "fajri123",
+  secret: secretbyte,
   providers: [
     CredentialsProvider({
       type: "credentials",
@@ -25,12 +34,7 @@ const authOptions: NextAuthOptions = {
           email: string;
           password: string;
         };
-        const user: any = {
-          id: 1,
-          name: "fajri hidayat",
-          email: "fajrihidayat@gmail.com",
-          role: "admin",
-        };
+        
         if (email == emailAdmin  && password == passwordAdmin) {
           return user;
         } else {
