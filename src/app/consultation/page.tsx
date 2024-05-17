@@ -1,5 +1,8 @@
+import Open from "@/components/consultation"
+import OpenAI from "@/components/consultation/OpenAI"
+
 const consultationPage = () => {
-    return <h1>Consultation Page</h1>
+    return <OpenAI/>
 }
 
 export default consultationPage

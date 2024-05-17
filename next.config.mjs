@@ -10,6 +10,9 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    NEXT_SECRET_OPENAI_API_KEY: process.env.NEXT_SECRET_OPENAI_API_KEY,
+  }
 };
 
 export default nextConfig;
