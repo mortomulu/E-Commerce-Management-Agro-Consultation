@@ -57,38 +57,35 @@ const agroProducts = [
     }
   ];
 
+
 function Open() {
   const supabase = createClientComponentClient();
   const [respond, setRespond] = useState("");
   const [prompt, setPrompt] = useState("");
   const [data, setData] = useState([]);
-  const key = process.env.NEXT_SECRET_OPENAI_API_KEY
-  console.log(key)
+  const API_KEY = process.env.NEXT_SECRET_OPENAI_API_KEY;
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   async function getData() {
     try {
-      let { data, error }: any = await supabase.from("products").select();
-
+      const { data, error } : any = await supabase.from("products").select();
+      if (error) throw error;
       setData(data);
-
-      if (error) {
-        throw error;
-      }
-
       console.log(data);
-      return data;
     } catch (error) {
-      console.error("Error fetching data");
+      console.error("Error fetching data:", error);
     }
   }
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e : any) => {
     e.preventDefault();
-    const promptAwal =
-      "kamu adalah seorang seorang customer service untuk sebuah e commerce agro yang akan menjawab masalah masalah dan memberikan dalam bidang agro, dan jika ada pertanyaan diluar bidang agro, ingatkan customer bahwa anda adalah cs agro";
+    const promptAwal = "kamu adalah seorang customer service untuk sebuah e-commerce agro yang akan menjawab masalah masalah dan memberikan informasi dalam bidang agro, dan jika ada pertanyaan diluar bidang agro, ingatkan customer bahwa anda adalah cs agro";
     
     const APIBody = {
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       messages: [
         {
           role: "user",
@@ -104,14 +101,14 @@ function Open() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: 'Bearer ' + key,
+            Authorization: `Bearer ${API_KEY}`,
           },
           body: JSON.stringify(APIBody),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch");
+        throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
@@ -125,16 +122,17 @@ function Open() {
   return (
     <div className="pt-28 p-10 h-screen">
       <form onSubmit={handleSubmit}>
-        <div className="h-96">{respond}</div>
-        <div className="flex items-center gap-5">
+        <div className="h-96 overflow-y-auto p-4 bg-gray-100 rounded">{respond}</div>
+        <div className="flex items-center gap-5 mt-4">
           <input
-            className="bg-white rounded-full w-[1200px] px-4 py-2 border-gray-300 border"
+            className="bg-white rounded-full w-full px-4 py-2 border-gray-300 border"
             id="prompt"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Type your message here..."
           />
           <button type="submit">
-            <IoSend className="w-7 h-7 text-center" />
+            <IoSend className="w-7 h-7 text-center text-blue-500" />
           </button>
         </div>
       </form>
