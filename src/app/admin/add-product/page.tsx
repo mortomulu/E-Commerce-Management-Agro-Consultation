@@ -4,6 +4,7 @@ import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { AddProduct } from "@/modules/addProduct.tsx/module";
 
 const AddProductPage = () => {
   const router = useRouter();
@@ -19,8 +20,9 @@ const AddProductPage = () => {
   }, [router, status]);
 
   return (
-    <div className="flex h-auto">
-      <FormAddProduct />
+    <div >
+      {/* <FormAddProduct /> */}
+      <AddProduct/>
     </div>
   );
 };
