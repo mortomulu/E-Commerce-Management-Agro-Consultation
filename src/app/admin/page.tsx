@@ -4,6 +4,7 @@ import CardDataStatsContainer from "@/components/CardDataStats/CardDataStatsCont
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { Dashboard } from "@/modules/dashboard/module";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -18,8 +19,8 @@ export default function DashboardPage() {
   }, [router, status]);
 
   return (
-    <div className="h-auto flex">
-      <CardDataStatsContainer />
+    <div>
+      <Dashboard/>
     </div>
   );
 }
