@@ -2,6 +2,7 @@ import TableAllProduct from "@/components/Table/TableAllProduct";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { AllProduct } from "@/modules/allProduct/module";
 
 const AllProductPage = () => {
   // const router = useRouter();
@@ -15,8 +16,9 @@ const AllProductPage = () => {
   // }, [router, status]);
 
   return (
-    <div className="h-auto flex">
-      <TableAllProduct />
+    <div >
+      {/* <TableAllProduct /> */}
+      <AllProduct/>
     </div>
   );
 };
