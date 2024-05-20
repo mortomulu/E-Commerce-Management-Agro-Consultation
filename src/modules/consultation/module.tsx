@@ -1,10 +1,10 @@
-import Layout from "../layout/layout"
-import ChatAI from "./chatAI"
+import Layout from "../layout/layout";
+import ChatAI from "./chatAI";
 
 export const Consultation = () => {
-    return (
-        <Layout>
-            <ChatAI/>
-        </Layout>
-    )
-}
+  return (
+    <Layout>
+      <ChatAI />
+    </Layout>
+  );
+};

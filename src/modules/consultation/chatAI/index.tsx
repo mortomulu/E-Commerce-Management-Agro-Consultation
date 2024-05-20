@@ -122,7 +122,7 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="pt-28 p-10 h-screen">
+    <div style={{ paddingTop: "100px" }} className=" p-10 h-screen">
       <form onSubmit={handleSubmit}>
         <div className="h-96 overflow-y-auto p-4 bg-gray-100 rounded">
           {respond}
